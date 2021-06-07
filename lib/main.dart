@@ -1,7 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_clean_architecture/app/navigation-service.dart';
+import 'package:todo_clean_architecture/injection-container.dart' as di;
 
-void main() {
+void main() async {
+  await di.init();
   runApp(MyApp());
 }
 
@@ -70,6 +73,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      navigatorKey: di.serviceLocator<NavigationService>().navigatorKey,
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
       home: App(),
     );
