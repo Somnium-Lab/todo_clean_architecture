@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_clean_architecture/app/authentication/domain/repository/auth-repository.dart';
 
-class AuthRepositoryImpl implements AuthRepository{
+class AuthRepositoryImpl implements AuthRepository {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   @override
-  Future<void> userSignIn({required String email, required String password}) {
-    // TODO: implement userSignIn
-    throw UnimplementedError();
+  Future<void> userSignIn(
+      {required String email, required String password}) async {
+    await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
   }
 
   @override
