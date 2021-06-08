@@ -3,6 +3,7 @@ import 'package:todo_clean_architecture/app/authentication/domain/repository/aut
 
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   @override
   Future<void> userSignIn(
       {required String email, required String password}) async {
@@ -11,14 +12,14 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> userSignOut() {
-    // TODO: implement userSignOut
-    throw UnimplementedError();
+  Future<void> userSignOut() async {
+    await _firebaseAuth.signOut();
   }
 
   @override
-  Future<void> userSignUp({required String email, required String password}) {
-    // TODO: implement userSignUp
-    throw UnimplementedError();
+  Future<void> userSignUp(
+      {required String email, required String password}) async {
+    await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
   }
 }
