@@ -17,20 +17,22 @@ class SignInStateMachine extends StateMachine<SignInState, SignInEvent> {
         break;
 
       default:
-        throw ("Invalid State : SignInStateMachine");
+        throw Exception("Invalid State : SignInStateMachine");
     }
     return newState;
   }
 }
 
-class SignInErrorState extends SignInState{}
+class SignInState {}
 
-class SignInErrorEvent extends SignInEvent{}
-
-class SignInClickEvent extends SignInEvent{}
+class SignInErrorState extends SignInState {}
 
 class SignInInitState extends SignInState {}
 
-class SignInState {}
+class SignInLoadingState extends SignInState {}
 
 class SignInEvent {}
+
+class SignInErrorEvent extends SignInEvent {}
+
+class SignInClickEvent extends SignInEvent {}
