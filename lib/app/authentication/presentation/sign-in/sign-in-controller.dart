@@ -7,6 +7,7 @@ import 'package:todo_clean_architecture/injection-container.dart';
 class SignInController extends Controller {
   final SignInPresenter _signInPresenter;
   final SignInStateMachine _signInStateMachine;
+    // ignore: unused_field
   final NavigationService _navigationService;
 
   SignInController()

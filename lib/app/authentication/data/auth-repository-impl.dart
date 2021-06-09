@@ -12,7 +12,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> userSignOut() async {
+  Future<void> userSplashScreen() async {
     await _firebaseAuth.signOut();
   }
 
