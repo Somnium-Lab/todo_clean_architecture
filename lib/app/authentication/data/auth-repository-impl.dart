@@ -12,7 +12,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> userSplashScreen() async {
+  Future<void> userSignOut() async {
     await _firebaseAuth.signOut();
   }
 
@@ -21,5 +21,13 @@ class AuthRepositoryImpl implements AuthRepository {
       {required String email, required String password}) async {
     await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
+  }
+
+  @override
+  bool checkUserSignInStatus() {
+    if (_firebaseAuth.currentUser == null)
+      return false;
+    else
+      return true;
   }
 }
