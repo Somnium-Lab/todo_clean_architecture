@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 abstract class StateMachine<State, Event> {
   late State _state;
 
-  StateMachine(State initailState) {
-    this._state = initailState;
+  StateMachine(State initialState) {
+    this._state = initialState;
   }
 
   @protected
