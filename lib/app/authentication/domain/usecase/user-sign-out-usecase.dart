@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:todo_clean_architecture/app/authentication/domain/repository/auth-repository.dart';
 
-class UserSplashScreenUsecase extends CompletableUseCase<void> {
+class UserSignOutUsecase extends CompletableUseCase<void> {
   final AuthRepository _repository;
-  UserSplashScreenUsecase(this._repository);
+  UserSignOutUsecase(this._repository);
 
   @override
   Future<Stream<void>> buildUseCaseStream(params) async {
