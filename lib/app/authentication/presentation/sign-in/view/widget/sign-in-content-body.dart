@@ -36,7 +36,7 @@ class SignInContentBody extends StatelessWidget {
         TextFormField(
           controller: passwordTextController,
           decoration: const InputDecoration(
-            icon: Icon(Icons.email_sharp),
+            icon: Icon(Icons.password_outlined),
             labelText: "Password",
           ),
         ),

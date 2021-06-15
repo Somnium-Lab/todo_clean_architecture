@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-in/sign-in-controller.dart';
+import 'package:todo_clean_architecture/app/authentication/presentation/sign-in/sign-in-state-machine.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-in/view/widget/sign-in-content-body.dart';
 
 class SignInErrorMobileView extends StatefulWidget {
@@ -13,13 +14,18 @@ class SignInErrorMobileView extends StatefulWidget {
 }
 
 class _SignInErrorMobileViewState extends State<SignInErrorMobileView> {
+  late SignInErrorState signInErrorState;
   late TextEditingController emailTextController;
   late TextEditingController passwordTextController;
 
   @override
   void initState() {
-    emailTextController = new TextEditingController();
-    passwordTextController = new TextEditingController();
+    signInErrorState =
+        widget.signInController.getCurrentState() as SignInErrorState;
+    emailTextController =
+        new TextEditingController(text: signInErrorState.email);
+    passwordTextController =
+        new TextEditingController(text: signInErrorState.password);
     super.initState();
   }
 

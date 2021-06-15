@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/sign-up-controller.dart';
+import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/sign-up-state-machine.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/view/widget/sign-up-content-body.dart';
 
 class SignUpErrorMobileView extends StatefulWidget {
@@ -13,13 +14,17 @@ class SignUpErrorMobileView extends StatefulWidget {
 }
 
 class _SignUpErrorMobileViewState extends State<SignUpErrorMobileView> {
-  late TextEditingController emailTextEditingController;
-  late TextEditingController passwordTextEditingController;
-
+  late TextEditingController _emailTextEditingController;
+  late TextEditingController _passwordTextEditingController;
+  late SignUpErrorState _signUpErrorState;
   @override
   void initState() {
-    emailTextEditingController = new TextEditingController();
-    passwordTextEditingController = new TextEditingController();
+    _signUpErrorState =
+        widget.signUpController.getCurrenState() as SignUpErrorState;
+    _emailTextEditingController =
+        new TextEditingController(text: _signUpErrorState.email);
+    _passwordTextEditingController =
+        new TextEditingController(text: _signUpErrorState.password);
     super.initState();
   }
 
@@ -32,8 +37,8 @@ class _SignUpErrorMobileViewState extends State<SignUpErrorMobileView> {
           child: Column(
             children: [
               SignUpContentBody(
-                emailTextEditingController: emailTextEditingController,
-                passwordTextEditingController: passwordTextEditingController,
+                emailTextEditingController: _emailTextEditingController,
+                passwordTextEditingController: _passwordTextEditingController,
                 controller: widget.signUpController,
               ),
               Text("Error Page")

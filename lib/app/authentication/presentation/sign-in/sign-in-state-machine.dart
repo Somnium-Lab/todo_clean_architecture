@@ -13,7 +13,11 @@ class SignInStateMachine extends StateMachine<SignInState, SignInEvent> {
         break;
 
       case SignInErrorEvent:
-        newState = SignInErrorState();
+        SignInErrorEvent signInErrorEvent = event as SignInErrorEvent;
+        newState = new SignInErrorState(
+          email: signInErrorEvent.email,
+          password: signInErrorEvent.password,
+        );
         break;
 
       default:
@@ -25,7 +29,12 @@ class SignInStateMachine extends StateMachine<SignInState, SignInEvent> {
 
 class SignInState {}
 
-class SignInErrorState extends SignInState {}
+class SignInErrorState extends SignInState {
+  final String email;
+  final String password;
+
+  SignInErrorState({required this.email, required this.password});
+}
 
 class SignInInitState extends SignInState {}
 
@@ -33,6 +42,14 @@ class SignInLoadingState extends SignInState {}
 
 class SignInEvent {}
 
-class SignInErrorEvent extends SignInEvent {}
+class SignInErrorEvent extends SignInEvent {
+  final String email;
+  final String password;
+
+  SignInErrorEvent({
+    required this.email,
+    required this.password,
+  });
+}
 
 class SignInClickEvent extends SignInEvent {}

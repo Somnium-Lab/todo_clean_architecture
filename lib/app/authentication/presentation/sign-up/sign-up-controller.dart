@@ -47,7 +47,10 @@ class SignUpController extends Controller {
             );
           },
           (error) {
-            _signUpStateMachine.onEvent(new SignUpErrorEvent());
+            _signUpStateMachine.onEvent(new SignUpErrorEvent(
+              email: email,
+              password: password,
+            ));
             refreshUI();
           },
         ),

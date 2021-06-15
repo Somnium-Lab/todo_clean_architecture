@@ -53,7 +53,10 @@ class SignInController extends Controller {
               shouldReplace: true);
         },
         (error) {
-          _signInStateMachine.onEvent(new SignInErrorEvent());
+          _signInStateMachine.onEvent(new SignInErrorEvent(
+            email: email,
+            password: password,
+          ));
           refreshUI();
         },
       ),
