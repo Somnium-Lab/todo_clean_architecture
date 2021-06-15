@@ -36,7 +36,9 @@ class SignUpController extends Controller {
   }
 
   void userSignUp({required String email, required String password}) {
-    _signUpPresenter.userSignUpStatus(
+    _signUpStateMachine.onEvent(SignUpClickEvent());
+    refreshUI();
+    _signUpPresenter.checkUserIsSignUpStatus(
         new UseCaseObserver(
           () {
             _navigationService.navigateTo(
@@ -47,7 +49,7 @@ class SignUpController extends Controller {
           (error) {
             _signUpStateMachine.onEvent(new SignUpErrorEvent());
             refreshUI();
-          }, 
+          },
         ),
         email: email,
         password: password);

@@ -1,6 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:todo_clean_architecture/app/authentication/presentation/sign-in/sign-in-controller.dart';
+import 'package:todo_clean_architecture/app/authentication/presentation/sign-in/view/widget/sign-in-content-body.dart';
 
-class SignInErrorMobileView extends StatelessWidget {
+class SignInErrorMobileView extends StatefulWidget {
+  final SignInController signInController;
+
+  const SignInErrorMobileView({Key? key, required this.signInController})
+      : super(key: key);
+
+  @override
+  _SignInErrorMobileViewState createState() => _SignInErrorMobileViewState();
+}
+
+class _SignInErrorMobileViewState extends State<SignInErrorMobileView> {
+  late TextEditingController emailTextController;
+  late TextEditingController passwordTextController;
+
+  @override
+  void initState() {
+    emailTextController = new TextEditingController();
+    passwordTextController = new TextEditingController();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -9,32 +31,11 @@ class SignInErrorMobileView extends StatelessWidget {
         body: Container(
           child: Column(
             children: [
-              Text("Welcome to "),
-              SizedBox(
-                height: 10,
+              SignInContentBody(
+                emailTextController: emailTextController,
+                passwordTextController: passwordTextController,
+                signInController: widget.signInController,
               ),
-              Text("TODO APP "),
-              SizedBox(
-                height: 30,
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.email_sharp),
-                  hintText: "abc@gmail.com",
-                  labelText: "Email Id",
-                ),
-              ),
-              SizedBox(height: 20),
-              TextFormField(
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.email_sharp),
-                  labelText: "Password",
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              TextButton(onPressed: () {}, child: Text("SIGN IN")),
               Text("ERROR")
             ],
           ),

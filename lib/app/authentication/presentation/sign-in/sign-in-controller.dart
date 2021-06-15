@@ -35,7 +35,17 @@ class SignInController extends Controller {
     return _signInStateMachine.getCurrentState();
   }
 
+  void navigateToSignUp() {
+    _navigationService.navigateTo(
+      NavigationService.signUpPageRoute,
+      shouldReplace: false,
+    );
+  }
+
   void userSignIn({required String email, required String password}) {
+    _signInStateMachine.onEvent(new SignInClickEvent());
+    refreshUI();
+
     _signInPresenter.checkUserIsSignIn(
       new UseCaseObserver(
         () {

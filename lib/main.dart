@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_clean_architecture/app/authentication/presentation/splash-screen/view/splash-screen-view.dart';
 import 'package:todo_clean_architecture/app/navigation-service.dart';
 import 'package:todo_clean_architecture/injection-container.dart' as di;
 
@@ -49,7 +50,8 @@ class SomethingWentWrong extends StatelessWidget {
 class MyAwesomeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(title: 'Flutter Demo Home Page');
+    //return MyHomePage(title: 'Flutter Demo Home Page');
+    return SplashScreenView();
   }
 }
 
@@ -74,6 +76,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       navigatorKey: di.serviceLocator<NavigationService>().navigatorKey,
+      onGenerateRoute: NavigationService.generateRoute,
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
       home: App(),
     );
@@ -81,9 +84,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, this.title}) : super(key: key);
-
-  final String? title;
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -102,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title!),
+        title: Text("Home"),
       ),
       body: Center(
         child: Column(

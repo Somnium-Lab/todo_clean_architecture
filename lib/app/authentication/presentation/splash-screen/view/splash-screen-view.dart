@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
+import 'package:todo_clean_architecture/app/authentication/presentation/splash-screen/view/widgets/splash-screen-widget.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/splash-screen/splash-screen-controller.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/splash-screen/splash-screen-state-machine.dart';
-import 'package:todo_clean_architecture/app/authentication/presentation/splash-screen/view/widget/splash-screen-widget.dart';
+
 
 class SplashScreenView extends View {
   @override
