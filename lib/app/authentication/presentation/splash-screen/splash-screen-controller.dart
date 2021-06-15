@@ -47,7 +47,8 @@ class SplashScreenController extends Controller {
             _navigationService.navigateTo(NavigationService.homePageRoute,
                 shouldReplace: true);
           } else {
-            _navigationService.navigateTo(NavigationService.signInPageRoute);
+            _navigationService.navigateTo(NavigationService.signInPageRoute,
+                shouldReplace: true);
           }
         },
       ),

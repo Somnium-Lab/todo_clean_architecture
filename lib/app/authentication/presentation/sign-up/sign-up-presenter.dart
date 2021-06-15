@@ -12,11 +12,7 @@ class SignUpPresenter implements Presenter {
     _userSignUpUsecase.dispose();
   }
 
-  void checkUserIsSignUpStatus(UseCaseObserver observer) {
-    _userSignUpUsecase.execute(observer);
-  }
-
-  void userSignUpStatus(
+  void checkUserIsSignUpStatus(
     UseCaseObserver observer, {
     required String email,
     required String password,

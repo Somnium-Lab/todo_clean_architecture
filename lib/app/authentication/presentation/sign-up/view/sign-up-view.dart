@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/flutter_clean_architecture.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/sign-up-controller.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/sign-up-state-machine.dart';
+import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/view/mobile/sign-up-error-mobile-view.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/view/mobile/sign-up-init-mobile-view.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/view/mobile/sign-up-loading-mobile-view.dart';
 
@@ -26,10 +27,19 @@ class SignUpViewState
 
         switch (currentStateType) {
           case SignUpInitState:
-            return SignUpInitMobileView();
+            return SignUpInitMobileView(
+              signUpController: controller,
+            );
 
           case SignUpLoadingState:
-            return SignUpLoadingMobileView();
+            return SignUpLoadingMobileView(
+              signUpController: controller,
+            );
+
+          case SignUpErrorState:
+            return SignUpErrorMobileView(
+              signUpController: controller,
+            );
 
           default:
             throw Exception("Unknown state $currentStateType : SignupView");
