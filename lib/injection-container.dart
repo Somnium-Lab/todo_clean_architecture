@@ -8,6 +8,14 @@ import 'package:todo_clean_architecture/app/authentication/domain/usecase/user-s
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-in/sign-in-presenter.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/sign-up/sign-up-presenter.dart';
 import 'package:todo_clean_architecture/app/authentication/presentation/splash-screen/splash-screen-presenter.dart';
+import 'package:todo_clean_architecture/app/todo/data/todo-repository-impl.dart';
+import 'package:todo_clean_architecture/app/todo/domain/repository/todo-repository.dart';
+import 'package:todo_clean_architecture/app/todo/domain/usecase/add-todo-usecase.dart';
+import 'package:todo_clean_architecture/app/todo/domain/usecase/get-todo-usecase.dart';
+import 'package:todo_clean_architecture/app/todo/domain/usecase/update-todo-usecase.dart';
+import 'package:todo_clean_architecture/app/todo/presentation/add-todo/add-todo-presenter.dart';
+import 'package:todo_clean_architecture/app/todo/presentation/get-todo/get-todo-presenter.dart';
+import 'package:todo_clean_architecture/app/todo/presentation/update-todo/update-todo-presenter.dart';
 
 import 'app/navigation-service.dart';
 
@@ -19,6 +27,13 @@ Future<void> init() async {
 
   //usecase
   //auth
+
+  serviceLocator.registerFactory(() => GetTodoUsecase(serviceLocator()));
+
+  serviceLocator.registerFactory(() => AddTodoUsecase(serviceLocator()));
+
+  serviceLocator.registerFactory(() => UpdateTodoUsecase(serviceLocator()));
+
   serviceLocator.registerFactory(
     () => CheckUserSignInStateUsecase(
       serviceLocator(),
@@ -44,6 +59,13 @@ Future<void> init() async {
   );
 
   //presenter
+
+  serviceLocator.registerFactory(() => GetTodoPresenter(serviceLocator()));
+
+  serviceLocator.registerFactory(() => AddTodoPresenter(serviceLocator()));
+
+  serviceLocator.registerFactory(() => UpdateTodoPresenter(serviceLocator()));
+
   serviceLocator.registerFactory(
     () => SignInPresenter(
       serviceLocator(),
@@ -66,8 +88,12 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<AuthRepository>(
     () => AuthRepositoryImpl(),
   );
+
+  serviceLocator
+      .registerLazySingleton<TodoRepository>(() => TodoRepositoryImpl());
 }
 
 Future<void> reset() async {
   serviceLocator.resetLazySingleton<AuthRepository>();
+  serviceLocator.resetLazySingleton<TodoRepository>();
 }
