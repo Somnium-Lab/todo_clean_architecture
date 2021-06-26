@@ -28,6 +28,7 @@ class TodoRepositoryImpl implements TodoRepository {
         .add({
       FirebaseKeys.keyNameTitle: title,
       FirebaseKeys.keyNameDescription: description,
+      FirebaseKeys.keyNameTime: DateTime.now(),
     });
   }
 
@@ -46,14 +47,14 @@ class TodoRepositoryImpl implements TodoRepository {
         .doc(itemId)
         .set({
       FirebaseKeys.keyNameTitle: title,
-      FirebaseKeys.keyNameDescription: description
-    });
+      FirebaseKeys.keyNameDescription: description,
+    }, SetOptions(merge: true));
   }
 
   @override
   Future<List<TodoEntity>> getTodo() async {
     User user = getUser();
-
+    print(user.displayName);
     List<TodoEntity> todolist = [];
 
     QuerySnapshot querySnapshot = await _firebaseFirestore
@@ -67,9 +68,10 @@ class TodoRepositoryImpl implements TodoRepository {
           title: querySnapshot.docs[i][FirebaseKeys.keyNameTitle],
           description: querySnapshot.docs[i][FirebaseKeys.keyNameDescription],
           todoId: querySnapshot.docs[i].id,
-          time: querySnapshot.docs[i][FirebaseKeys.keyNameTime]));
+          time: (querySnapshot.docs[i][FirebaseKeys.keyNameTime] as Timestamp)
+              .toDate()));
     }
-
+    print("Todo List : $todolist");
     return todolist;
   }
 }

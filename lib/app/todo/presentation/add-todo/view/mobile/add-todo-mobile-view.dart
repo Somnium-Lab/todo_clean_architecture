@@ -14,7 +14,7 @@ class AddTodoMobileView extends StatefulWidget {
 class _AddTodoMobileViewState extends State<AddTodoMobileView> {
   late final TextEditingController _titleTextEditingController;
   late final TextEditingController _descriptionTextEditingController;
-  late final AddTodoController addTodoController;
+
   @override
   void initState() {
     _titleTextEditingController = new TextEditingController();
@@ -28,7 +28,7 @@ class _AddTodoMobileViewState extends State<AddTodoMobileView> {
       appBar: AppBar(),
       body: Container(
           child: AddTodoBodyContent(
-              addTodoController: addTodoController,
+              addTodoController: widget.addTodoController,
               titleTextEditingController: _titleTextEditingController,
               descriptionTextEditingController:
                   _descriptionTextEditingController)),

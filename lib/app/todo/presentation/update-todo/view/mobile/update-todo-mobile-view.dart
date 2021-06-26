@@ -18,7 +18,7 @@ class _UpdateTodoMobileViewState extends State<UpdateTodoMobileView> {
   late final TextEditingController titleTextEditingController;
 
   late final TextEditingController descriptionTextEditingController;
-  late final UpdateTodoController updateTodoController;
+
   void initState() {
     titleTextEditingController =
         new TextEditingController(text: widget.task.title);
@@ -35,7 +35,7 @@ class _UpdateTodoMobileViewState extends State<UpdateTodoMobileView> {
           child: UpdateTodoBodyContent(
         titleTextEditingController: titleTextEditingController,
         descriptionTextEditingController: descriptionTextEditingController,
-        updateTodoController: updateTodoController,
+        updateTodoController: widget.updateTodoController,
         task: widget.task,
       )),
     );

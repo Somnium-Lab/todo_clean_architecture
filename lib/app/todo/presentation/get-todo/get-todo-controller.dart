@@ -37,9 +37,8 @@ class GetTodoController extends Controller {
   }
 
   void getTodo() {
-    new UseCaseObserver(() {
-      // _getTodoStateMachine.onEvent(new GetTodoInitializationEvent());
-      // refreshUI();
+    _getTodoPresenter.getTodo(new UseCaseObserver(() {
+      print("Get todo fetched 2");
     }, (error) {
       _getTodoStateMachine.onEvent(new GetTodoErrorEvent());
       refreshUI();
@@ -47,7 +46,8 @@ class GetTodoController extends Controller {
       _getTodoStateMachine
           .onEvent(new GetTodoInitializedEvent(todoList: todoList));
       refreshUI();
-    });
+      print("Get todo fetched 3");
+    }));
   }
 
   void navigateToUpdatePage({required TodoEntity task}) {

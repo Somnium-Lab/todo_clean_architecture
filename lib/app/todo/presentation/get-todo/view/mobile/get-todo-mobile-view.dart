@@ -24,7 +24,6 @@ class _GetTodoMobileViewState extends State<GetTodoMobileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Container(
         child: GetTodoBodyContentMobileView(
           getTodoController: widget.getTodoController,
