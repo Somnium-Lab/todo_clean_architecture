@@ -16,9 +16,13 @@ class GetTodoStateMachine extends StateMachine<GetTodoState, GetTodoEvent> {
         newState = new GetTodoInitializedState(
             todoList: getTodoInitializedEvent.todoList);
         break;
-       
+
       case GetTodoErrorEvent:
         newState = new GetTodoErrorState();
+        break;
+
+      case GetTodoIntializationEvent:
+        newState = new GetTodoInitializationState();
         break;
     }
 
@@ -27,6 +31,8 @@ class GetTodoStateMachine extends StateMachine<GetTodoState, GetTodoEvent> {
 }
 
 class GetTodoInitializationState extends GetTodoState {}
+
+class GetTodoIntializationEvent extends GetTodoEvent {}
 
 class GetTodoInitializedState extends GetTodoState {
   final List<TodoEntity> todoList;

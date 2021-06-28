@@ -51,11 +51,21 @@ class GetTodoController extends Controller {
   }
 
   void navigateToUpdatePage({required TodoEntity task}) {
-    _navigationService.navigateTo(NavigationService.updateTodoPageRoute,
-        arguments: new UpdateTodoViewParams(task));
+    _navigationService
+        .navigateTo(NavigationService.updateTodoPageRoute,
+            arguments: new UpdateTodoViewParams(task))
+        .then((value) {
+      _getTodoStateMachine.onEvent(new GetTodoIntializationEvent());
+      refreshUI();
+    });
   }
 
   void navigateToAddPage() {
-    _navigationService.navigateTo(NavigationService.addTodoPageRoute);
+    _navigationService
+        .navigateTo(NavigationService.addTodoPageRoute)
+        .then((value) {
+      _getTodoStateMachine.onEvent(new GetTodoIntializationEvent());
+      refreshUI();
+    });
   }
 }
